@@ -2,5 +2,5 @@
 
 This ruby script simulates the wc command in Linux. 
 
-Run this command :  ruby parser.rc filename
+Run this command :  ruby parser.rb filename
 
