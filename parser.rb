@@ -25,15 +25,19 @@ f.each_line do |line|
     stripped_char = w.downcase.gsub(/\A[\d_\W]+|[\d_\W]+\Z/, '')
     prop_char -= stripped_char.length; prop_words -= 1 if censor.include? stripped_char
   end
+  (line.start_with? "Section")?(total_sections+=1; articles[curr_article]+= 1):()
   num = check_and_get_number(line)
   next if num == -1
   if num != curr_article
-    puts num
+    curr_article = num
     articles[num] = 0
   end
 end
 puts "all:\t#{lines}\t#{word_count}\t#{characters}\t#{name}"
 puts "proper:\t#{lines}\t#{prop_words}\t#{prop_char}\t#{name}"
-articles.each do |x,y| puts x end
+puts "Total Articles: #{articles.length}"
+puts "Total Sections: #{total_sections}"
+puts "Total Sections per Article:"
+articles.each do |x,y| puts "\tArticle #{x}: #{y}" end
 f.close
 
