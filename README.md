@@ -10,8 +10,7 @@ This is the final output of the script as shown in the screenshot:
 ruby parser.rb constitution.txt 
 
 all:	872	7652	45119	constitution.txt
-
-proper:	872	5919	40554	constitution.txt
+proper:	872	5919	40554	
 
 Total Articles: 7
 
