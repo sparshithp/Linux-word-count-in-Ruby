@@ -42,7 +42,7 @@ articles.each do |x, y|
   total_sections += y
 end
 puts "all:\t#{lines}\t#{word_count}\t#{characters}\t#{name}"
-puts "proper:\t#{lines}\t#{prop_words}\t#{prop_char}\t#{name}"
+puts "proper:\t#{lines}\t#{prop_words}\t#{prop_char}"
 puts "Total Articles: #{articles.length}"
 puts "Total Sections: #{total_sections}"
 puts "Total Sections per Article:"
