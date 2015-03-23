@@ -1,3 +1,4 @@
+#Function returns -1 if the line does not indicate a new article or returns the article number if it does.
 def check_for_article_number(line)
   if line.start_with? "Article" and line[-1, 1]=="."
     words = line[0, line.length-1].split(/\s+/)
@@ -28,7 +29,7 @@ f.each_line do |line|
       prop_words -= 1
     end
   end
-  (line.start_with? "Section")?(total_sections+=1; articles[curr_article]+= 1):()
+  (line.start_with? "Section") ? (articles[curr_article]+= 1) : ()
   num = check_for_article_number(line)
   next if num == -1
   if num != curr_article
@@ -36,11 +37,16 @@ f.each_line do |line|
     articles[num] = 0
   end
 end
+f.close
+articles.each do |x, y|
+  total_sections += y
+end
 puts "all:\t#{lines}\t#{word_count}\t#{characters}\t#{name}"
 puts "proper:\t#{lines}\t#{prop_words}\t#{prop_char}\t#{name}"
 puts "Total Articles: #{articles.length}"
 puts "Total Sections: #{total_sections}"
 puts "Total Sections per Article:"
-articles.each do |x,y| puts "\tArticle #{x}: #{y}" end
-f.close
+articles.each do |x, y|
+  puts "\tArticle #{x}: #{y}"
+end
 
