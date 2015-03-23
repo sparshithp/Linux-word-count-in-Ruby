@@ -1,4 +1,4 @@
-def check_and_get_number(line)
+def check_for_article_number(line)
   if line.start_with? "Article" and line[-1, 1]=="."
     words = line[0, line.length-1].split(/\s+/)
     return words[1] if words.length==2
@@ -23,10 +23,13 @@ f.each_line do |line|
   prop_words += words.length
   words.each do |w|
     stripped_char = w.downcase.gsub(/\A[\d_\W]+|[\d_\W]+\Z/, '')
-    prop_char -= stripped_char.length; prop_words -= 1 if censor.include? stripped_char
+    if censor.include? stripped_char
+      prop_char -= stripped_char.length
+      prop_words -= 1
+    end
   end
   (line.start_with? "Section")?(total_sections+=1; articles[curr_article]+= 1):()
-  num = check_and_get_number(line)
+  num = check_for_article_number(line)
   next if num == -1
   if num != curr_article
     curr_article = num
